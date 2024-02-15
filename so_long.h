@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:39:11 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/14 23:35:26 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:49:21 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ typedef struct data
     size_t width;
     size_t height;
     char **t_map;
+    char **d_map;
     size_t p_x;
     size_t p_y;
     void *mlx_ptr;
     void *win_ptr;
+    size_t C_count;
     void *img_P;
     void *img_B;
     void *img_C;
