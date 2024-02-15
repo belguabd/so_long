@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:39:11 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/13 16:35:37 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/14 23:35:26 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,22 @@ typedef struct data
     size_t width;
     size_t height;
     char **t_map;
+    size_t p_x;
+    size_t p_y;
+    void *mlx_ptr;
+    void *win_ptr;
+    void *img_P;
+    void *img_B;
+    void *img_C;
+    void *img_E;
 } t_data;
 
 /*libft*/
-char	*ft_strchr(const char *s, int c);
+char *ft_strchr(const char *s, int c);
 
+/*macro*/
+#define KEY_UP 126
+#define KEY_DOWN 125
+#define KEY_LEFT 123
+#define KEY_RIGHT 124
 #endif

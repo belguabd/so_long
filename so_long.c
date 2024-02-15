@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/14 10:58:47 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/15 08:54:25 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ char *getstruntilnl(char *line)
 {
 	int i = 0;
 	char *new;
+	
+	
 
 	while (line[i] && line[i] != '\n')
 		i++;
@@ -156,10 +158,79 @@ void parsing(t_data data, size_t height, size_t width)
 	if (E_count != 1)
 		ft_putstr_fd("Error: There should be exactly one 'E' character\n", 2);
 }
+void render_map(void *mlx_ptr, void *win_ptr, t_data *data, void *img)
+{
+	int x = 0;
+	int y = 0;
+	int w;
+	int h;
+	while (data->t_map[y])
+	{
+		x = 0;
+		while (data->t_map[y][x])
+		{
+			if (data->t_map[y][x] == '1')
+			{
+				img = mlx_xpm_file_to_image(mlx_ptr, "./wall.xpm", &w, &h);
+				mlx_put_image_to_window(mlx_ptr, win_ptr, img, x * 50, y * 50);
+			}
+			else if (data->t_map[y][x] == 'P')
+			{
+				img = mlx_xpm_file_to_image(mlx_ptr, "./player.xpm", &w, &h);
+				mlx_put_image_to_window(mlx_ptr, win_ptr, img, data->p_x * 50, data->p_y * 50);
+			}
+			else if (data->t_map[y][x] == 'C')
+			{
+				img = mlx_xpm_file_to_image(mlx_ptr, "./coll.xpm", &w, &h);
+				mlx_put_image_to_window(mlx_ptr, win_ptr, img, x * 50, y * 50);
+			}
+			else if (data->t_map[y][x] == 'E')
+			{
+				img = mlx_xpm_file_to_image(mlx_ptr, "./door.xpm", &w, &h);
+				mlx_put_image_to_window(mlx_ptr, win_ptr, img, x * 50, y * 50);
+			}
+			x++;
+		}
+		y++;
+	}
+}
+void update_position_and_map(t_data *data, size_t new_y, size_t new_x)
+{
+	char *element = &data->t_map[new_y][new_x];
+	if (*element == 'C' || *element == '0')
+	{
+		if (*element == 'C')
+		{
+			*element = '0';
+		}
+		data->p_y = new_y;
+		data->p_x = new_x;
+	}
+}
+int key_handler(int keycode, t_data *data)
+{
+	size_t new_y = data->p_y;
+	size_t new_x = data->p_x;
+
+	if (keycode == KEY_DOWN)
+		new_y++;
+	else if (keycode == KEY_LEFT)
+		new_x--;
+
+	else if (keycode == KEY_UP)
+		new_y--;
+	else if (keycode == KEY_RIGHT)
+		new_x++;
+	update_position_and_map(data, new_y, new_x);
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_B, 50, 50);
+	render_map(data->mlx_ptr, data->win_ptr, data, data->img_B);
+	return (0);
+}
 int main()
 {
 	t_data data;
-	void *img;
+
 	int w;
 	int h;
 	set_width_height(&data);
@@ -167,34 +238,33 @@ int main()
 	if (!data.t_map[0][0])
 		ft_putstr_fd("Error: The map is empty\n", 2);
 	parsing(data, data.height, data.width);
-	void *mlx_ptr;
-	void *win_ptr;
 
 	size_t win_width = data.width * 50;
 	size_t win_height = data.height * 50;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, win_width, win_height, "so_long");
-	img = mlx_xpm_file_to_image(mlx_ptr, "./wall.xpm", &w, &h);
-	size_t size_width = win_width / 50;
-	size_t size_height = win_height / 50;
-	printf("%d\n", size_width);
-	printf("%d\n", size_height);
+	data.mlx_ptr = mlx_init();
+	data.win_ptr = mlx_new_window(data.mlx_ptr, win_width, win_height, "so_long");
+	data.img_B = mlx_xpm_file_to_image(data.mlx_ptr, "./background.xpm", &w, &h);
+	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_B, 50, 50);
 	int x = 0;
 	int y = 0;
-	while (size_height--)
+	while (data.t_map[y])
 	{
-		size_width = win_width / 50;
 		x = 0;
-		while (size_width--)
+		while (data.t_map[y][x])
 		{
-			mlx_put_image_to_window(mlx_ptr, win_ptr, img, x * 50, y * 50);
+			if (data.t_map[y][x] == 'P')
+			{
+				data.p_x = x;
+				data.p_y = y;
+				break;
+			}
 			x++;
 		}
 		y++;
 	}
-
-	mlx_loop(mlx_ptr);
-
-	return 0;
+	mlx_hook(data.win_ptr, 2, 0, key_handler, &data);
+	render_map(data.mlx_ptr, data.win_ptr, &data, data.img_B);
+	mlx_loop(data.mlx_ptr);
+	return (0);
 }
