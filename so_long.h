@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:39:11 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/15 16:49:21 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:42:36 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ typedef struct data
     void *mlx_ptr;
     void *win_ptr;
     size_t C_count;
+    size_t nbr_move;
     void *img_P;
     void *img_B;
     void *img_C;
+    void *img_W;
     void *img_E;
+    void *img_EO;
 } t_data;
 
 /*libft*/
@@ -55,4 +58,5 @@ char *ft_strchr(const char *s, int c);
 #define KEY_DOWN 125
 #define KEY_LEFT 123
 #define KEY_RIGHT 124
+#define ESC 53
 #endif
