@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/17 16:51:28 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:23:47 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ int main(int ac, char const *av[])
 	render_map(data.mlx_ptr, data.win_ptr, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
-	
 }
 
 		
