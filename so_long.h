@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:39:11 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/16 15:42:36 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:00:36 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct data
     size_t p_y;
     void *mlx_ptr;
     void *win_ptr;
-    size_t C_count;
     size_t nbr_move;
     void *img_P;
     void *img_B;
@@ -48,6 +47,9 @@ typedef struct data
     void *img_W;
     void *img_E;
     void *img_EO;
+    size_t C_count;
+    size_t P_count;
+    size_t E_count;
 } t_data;
 
 /*libft*/
@@ -59,4 +61,17 @@ char *ft_strchr(const char *s, int c);
 #define KEY_LEFT 123
 #define KEY_RIGHT 124
 #define ESC 53
+/*parsing*/
+void parsing(t_data *data, size_t height, size_t width);
+void validate_and_set_params(t_data *data, char const *av, int ac);
+int valid_file(char const *file);
+/*utils*/
+void ft_putstr_fd(char *s, int fd);
+void flood_fill(t_data data, size_t y, size_t x);
+bool has_elements(t_data data);
+void set_width_height(t_data *data, char const *av);
+void ft_set_map(t_data *data, size_t height, char const *av);
+void render_map(void *mlx_ptr, void *win_ptr, t_data *data);
+void initialize_data(t_data *data);
+int close_window(t_data *data);
 #endif

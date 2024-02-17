@@ -6,7 +6,7 @@
 #    By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 16:26:12 by belguabd          #+#    #+#              #
-#    Updated: 2024/02/16 15:25:00 by belguabd         ###   ########.fr        #
+#    Updated: 2024/02/17 15:01:04 by belguabd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 #------Folder------#
 GET_NEXT_LINE = get_next_line
 UTILS = utils
+PARSING = parsing
 
 NAME_PROG = so_long
 RM = rm -f
@@ -23,7 +24,9 @@ RM = rm -f
 #------Sources------#
 SRC = so_long.c \
     $(GET_NEXT_LINE)/get_next_line.c $(GET_NEXT_LINE)/get_next_line_utils.c \
-
+	$(PARSING)/parsing.c $(PARSING)/parsing_utils.c\
+	$(UTILS)/ft_putstr_fd.c $(UTILS)/flood_fill.c $(UTILS)/set_width_height.c $(UTILS)/ft_set_map.c\
+	$(UTILS)/render_map.c $(UTILS)/initialize_data.c $(UTILS)/close_window.c
 #------Objects------#
 OBJ = $(SRC:.c=.o)
 
