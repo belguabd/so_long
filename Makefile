@@ -6,19 +6,19 @@
 #    By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 16:26:12 by belguabd          #+#    #+#              #
-#    Updated: 2024/02/17 15:01:04 by belguabd         ###   ########.fr        #
+#    Updated: 2024/02/17 15:23:28 by belguabd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 #------Folder------#
 GET_NEXT_LINE = get_next_line
 UTILS = utils
 PARSING = parsing
 
-NAME_PROG = so_long
+NAME = so_long
 RM = rm -f
 
 #------Sources------#
@@ -35,11 +35,11 @@ GREEN = \033[32m
 RED = \033[31m
 
 
-
+all : $(NAME)
 #------Rules------#
-$(NAME_PROG): $(OBJ) $(MLX_LIB)
-	@$(CC) $(CFLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME_PROG)
-	@echo "$(GREEN)Run './$(NAME_PROG)' to execute"
+$(NAME): $(OBJ) $(MLX_LIB)
+	@$(CC) $(CFLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@echo "$(GREEN)Run './$(NAME)' to execute"
 
 $(MLX_LIB):
 	@$(MAKE) -C $(MLX_DIR)
@@ -55,7 +55,7 @@ clean:
 
 #------fclean------#
 fclean: clean
-	@$(RM) $(NAME_PROG)
+	@$(RM) $(NAME)
 	@echo "$(RED)Program and MiniLibX objects removed : \033[1;31mOK\033[m"
 
 #------re------#

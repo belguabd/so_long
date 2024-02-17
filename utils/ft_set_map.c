@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:19:36 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/17 14:41:40 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:51:15 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void ft_set_map(t_data *data, size_t height, char const *av)
 {
     int fd;
     size_t i;
-    
     i = 0;
     validate_file_and_get_line(av, height);
     fd = open(av, O_RDWR);

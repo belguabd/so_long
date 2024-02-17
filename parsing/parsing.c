@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 18:24:53 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/17 14:06:54 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/17 15:58:22 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void validate_map(t_data *data, size_t tmp_h)
     if (data->E_count != 1)
         ft_putstr_fd("Error: There should be exactly one 'E' character\n", 2);
 }
+#include <stdio.h>
 void parsing(t_data *data, size_t height, size_t width)
 {
     size_t i;
@@ -86,6 +87,7 @@ void parsing(t_data *data, size_t height, size_t width)
     while (data->t_map[i])
         if (ft_strlen(data->t_map[i++]) != width)
             ft_putstr_fd("Error: Invalid border in map\n", 2);
+    i = 0;
     while (i < data->width)
         if (data->t_map[0][i++] != '1')
             ft_putstr_fd("Error: The map is not closed/surrounded by walls\n", 2);

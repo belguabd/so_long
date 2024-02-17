@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:45:09 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/17 14:45:36 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:35:51 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void initialize_data(t_data *data)
 {
     int w;
     int h;
-    data->nbr_move = 0;
+    data->nbr_move = 1;
     data->img_B = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/background.xpm", &w, &h);
     if (!data->img_B)
         ft_putstr_fd("Error: The background image is not found\n", 2);
