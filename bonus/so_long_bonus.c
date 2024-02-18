@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/17 17:37:57 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/18 08:55:40 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include <stdio.h>
 #include "./mlx.h"
-
+int animation(t_data *data);
 void update_position_and_map(t_data *data, size_t new_y, size_t new_x)
 {
 
@@ -28,7 +28,7 @@ void update_position_and_map(t_data *data, size_t new_y, size_t new_x)
 
 		data->p_y = new_y;
 		data->p_x = new_x;
-		printf("%zu\n", data->nbr_move++);
+		// printf("%zu\n", data->nbr_move++);
 	}
 	if (data->C_count == 0)
 	{
@@ -61,8 +61,7 @@ int key_handler(int keycode, t_data *data)
 		new_x++;
 	update_position_and_map(data, new_y, new_x);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_B, 50, 50);
-	render_map(data->mlx_ptr, data->win_ptr, data);
+	render_map(data);
 	return (0);
 }
 void locate_player_in_map(t_data *data)
@@ -101,12 +100,72 @@ void display(t_data *data)
 		y++;
 	}
 }
+void find_pos_d(t_data *data)
+{
+	int x = 0;
+	int y = 0;
+
+	while (data->t_map[y])
+	{
+		x = 0;
+		while (data->t_map[y][x])
+		{
+			if (data->t_map[y][x] == 'D')
+			{
+				data->d_x = x;
+				data->d_y = y;
+				data->old_d_x = x;
+				data->old_d_y = y;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+int animation(t_data *data)
+{
+	static int sleep_d;
+	// static int count;
+
+	int n = 59;
+	if (sleep_d % n == 0)
+	{
+		find_pos_d(data);
+
+
+		if (data->enemy_dir == 0 && data->t_map[data->d_y][data->d_x + 1] != '1')
+		{
+			data->t_map[data->d_y][data->d_x] = '0';
+			data->old_d_x = data->d_x;
+			data->d_x++;
+			data->t_map[data->d_y][data->d_x] = 'D';
+			
+		}
+		else if (data->enemy_dir == 0 && data->t_map[data->d_y][data->d_x + 1] == '1')
+			data->enemy_dir = 1;
+		if (data->enemy_dir == 1 && data->t_map[data->d_y][data->d_x - 1] != '1')
+		{
+			data->t_map[data->d_y][data->d_x] = '0';
+			data->old_d_x = data->d_x;
+			data->d_x--;
+			data->t_map[data->d_y][data->d_x] = 'D';
+		}
+		else if (data->enemy_dir == 1 && data->t_map[data->d_y][data->d_x - 1] == '1')
+			data->enemy_dir = 0;
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_L, data->old_d_x * 50, data->d_y * 50);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_D, data->d_x * 50, data->d_y * 50);
+	}
+	usleep(20000); // Delay for 10 milliseconds
+	sleep_d++;
+	return (0);
+}
 int main(int ac, char const *av[])
 {
 	t_data data;
 	validate_and_set_params(&data, av[1], ac);
 	set_width_height(&data, av[1]);
 	ft_set_map(&data, data.height, av[1]);
+
 	if (!data.t_map[0][0])
 		ft_putstr_fd("Error: The map is empty\n", 2);
 	locate_player_in_map(&data);
@@ -119,10 +178,12 @@ int main(int ac, char const *av[])
 	size_t win_width = data.width * 50;
 	size_t win_height = data.height * 50;
 	data.win_ptr = mlx_new_window(data.mlx_ptr, win_width, win_height, "so_long");
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_B, 50, 50);
+
 	mlx_hook(data.win_ptr, 2, 0, key_handler, &data);
 	mlx_hook(data.win_ptr, 17, 0, close_window, &data);
-	render_map(data.mlx_ptr, data.win_ptr, &data);
+	mlx_loop_hook(data.mlx_ptr, animation, &data);
+	render_map(&data);
 	mlx_loop(data.mlx_ptr);
+
 	return (0);
 }

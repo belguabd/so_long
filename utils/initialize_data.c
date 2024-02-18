@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:45:09 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/17 16:35:51 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/17 19:43:23 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,6 @@ void initialize_data(t_data *data)
     data->img_EO = mlx_xpm_file_to_image(data->mlx_ptr, "./textures/open_door_v1.xpm", &w, &h);
     if (!data->img_EO)
         ft_putstr_fd("Error: The open door image is not found\n", 2);
+    
+        
 }

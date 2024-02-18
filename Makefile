@@ -6,12 +6,12 @@
 #    By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 16:26:12 by belguabd          #+#    #+#              #
-#    Updated: 2024/02/17 17:37:06 by belguabd         ###   ########.fr        #
+#    Updated: 2024/02/18 01:47:04 by belguabd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -Ofast
 
 #------Folder------#
 GET_NEXT_LINE = get_next_line
@@ -29,11 +29,12 @@ SRC = so_long.c \
 	$(PARSING)/parsing.c $(PARSING)/parsing_utils.c\
 	$(UTILS)/ft_putstr_fd.c $(UTILS)/flood_fill.c $(UTILS)/set_width_height.c $(UTILS)/ft_set_map.c\
 	$(UTILS)/render_map.c $(UTILS)/initialize_data.c $(UTILS)/close_window.c
-SRC_B = so_long.c \
-    $(BONUS)/$(GET_NEXT_LINE)/get_next_line.c $(BONUS)/$(GET_NEXT_LINE)/get_next_line_utils.c \
-	$(BONUS)/$(PARSING)/parsing.c $(BONUS)/$(PARSING)/parsing_utils.c\
-	$(BONUS)/$(UTILS)/ft_putstr_fd.c $(BONUS)/$(UTILS)/flood_fill.c $(BONUS)/$(UTILS)/set_width_height.c $(BONUS)/$(UTILS)/ft_set_map.c\
-	$(BONUS)/$(UTILS)/render_map.c $(BONUS)/$(UTILS)/initialize_data.c $(BONUS)/$(UTILS)/close_window.c
+
+SRC_B =  $(BONUS)/so_long_bonus.c \
+    $(BONUS)/$(GET_NEXT_LINE)/get_next_line_bonus.c $(BONUS)/$(GET_NEXT_LINE)/get_next_line_utils_bonus.c \
+	$(BONUS)/$(PARSING)/parsing_bonus.c $(BONUS)/$(PARSING)/parsing_utils_bonus.c\
+	$(BONUS)/$(UTILS)/ft_putstr_fd_bonus.c $(BONUS)/$(UTILS)/flood_fill_bonus.c $(BONUS)/$(UTILS)/set_width_height_bonus.c $(BONUS)/$(UTILS)/ft_set_map_bonus.c\
+	$(BONUS)/$(UTILS)/render_map_bonus.c $(BONUS)/$(UTILS)/initialize_data_bonus.c $(BONUS)/$(UTILS)/close_window_bonus.c
 #------Objects------#
 OBJ = $(SRC:.c=.o)
 OBJB = $(SRC_B:.c=.o)
@@ -71,7 +72,7 @@ fclean: clean
 	@echo "$(RED)Program and MiniLibX objects removed : \033[1;31mOK\033[m"
 
 #------re------#
-re: fclean all
+re: fclean all bonus
 	@echo "$(GREEN)Program recompiled : \033[1;34mOK\033[m"
 
 #------.PHONY------#

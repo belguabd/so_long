@@ -1,4 +1,4 @@
-    /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:39:11 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/17 15:00:36 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/18 04:38:31 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,17 @@ typedef struct data
     void *img_W;
     void *img_E;
     void *img_EO;
+    void *img_D;
+    void *img_L;
     size_t C_count;
     size_t P_count;
     size_t E_count;
+    size_t enemy_dir;
+    int d_x;
+    int d_y;
+    int old_d_x;
+    int old_d_y;
+
 } t_data;
 
 /*libft*/
@@ -71,7 +79,7 @@ void flood_fill(t_data data, size_t y, size_t x);
 bool has_elements(t_data data);
 void set_width_height(t_data *data, char const *av);
 void ft_set_map(t_data *data, size_t height, char const *av);
-void render_map(void *mlx_ptr, void *win_ptr, t_data *data);
+void render_map(t_data *data);
 void initialize_data(t_data *data);
 int close_window(t_data *data);
 #endif

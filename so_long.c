@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/17 17:23:47 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/18 01:52:11 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int key_handler(int keycode, t_data *data)
 	update_position_and_map(data, new_y, new_x);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_B, 50, 50);
-	render_map(data->mlx_ptr, data->win_ptr, data);
+	render_map( data);
 	return (0);
 }
 void locate_player_in_map(t_data *data)
@@ -107,8 +107,7 @@ int main(int ac, char const *av[])
 	validate_and_set_params(&data, av[1], ac);
 	set_width_height(&data, av[1]);
 	ft_set_map(&data, data.height, av[1]);
-	// display(&data);
-	// exit(0);
+
 	if (!data.t_map[0][0])
 		ft_putstr_fd("Error: The map is empty\n", 2);
 	locate_player_in_map(&data);
@@ -124,7 +123,7 @@ int main(int ac, char const *av[])
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_B, 50, 50);
 	mlx_hook(data.win_ptr, 2, 0, key_handler, &data);
 	mlx_hook(data.win_ptr, 17, 0, close_window, &data);
-	render_map(data.mlx_ptr, data.win_ptr, &data);
+	render_map(&data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
