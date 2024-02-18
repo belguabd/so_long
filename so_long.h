@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:39:11 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/18 04:38:31 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/18 10:42:33 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ typedef struct data
     size_t P_count;
     size_t E_count;
     size_t enemy_dir;
-    int d_x;
-    int d_y;
-    int old_d_x;
-    int old_d_y;
+    size_t d_x;
+    size_t d_y;
+    size_t old_d_x;
+    size_t old_d_y;
 
 } t_data;
 

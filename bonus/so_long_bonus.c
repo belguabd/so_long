@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/18 08:55:40 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/18 12:46:00 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,37 +125,33 @@ void find_pos_d(t_data *data)
 int animation(t_data *data)
 {
 	static int sleep_d;
-	// static int count;
 
-	int n = 59;
-	if (sleep_d % n == 0)
+	if (sleep_d % 2000 == 1)
 	{
 		find_pos_d(data);
-
-
-		if (data->enemy_dir == 0 && data->t_map[data->d_y][data->d_x + 1] != '1')
+		if (data->enemy_dir == 0 && (data->t_map[data->d_y][data->d_x + 1] != '1' && data->t_map[data->d_y][data->d_x + 1] != 'C' && data->t_map[data->d_y][data->d_x + 1] != 'E'))
 		{
 			data->t_map[data->d_y][data->d_x] = '0';
 			data->old_d_x = data->d_x;
 			data->d_x++;
 			data->t_map[data->d_y][data->d_x] = 'D';
-			
 		}
-		else if (data->enemy_dir == 0 && data->t_map[data->d_y][data->d_x + 1] == '1')
+		else if (data->enemy_dir == 0 && (data->t_map[data->d_y][data->d_x + 1] == '1' || data->t_map[data->d_y][data->d_x + 1] == 'C' || data->t_map[data->d_y][data->d_x + 1] == 'E'))
 			data->enemy_dir = 1;
-		if (data->enemy_dir == 1 && data->t_map[data->d_y][data->d_x - 1] != '1')
+		if (data->enemy_dir == 1 && (data->t_map[data->d_y][data->d_x - 1] != '1' && data->t_map[data->d_y][data->d_x - 1] != 'C' && data->t_map[data->d_y][data->d_x - 1] != 'E'))
 		{
 			data->t_map[data->d_y][data->d_x] = '0';
 			data->old_d_x = data->d_x;
 			data->d_x--;
 			data->t_map[data->d_y][data->d_x] = 'D';
 		}
-		else if (data->enemy_dir == 1 && data->t_map[data->d_y][data->d_x - 1] == '1')
+		else if (data->enemy_dir == 1 && (data->t_map[data->d_y][data->d_x - 1] == '1' || data->t_map[data->d_y][data->d_x - 1] == 'C' || data->t_map[data->d_y][data->d_x - 1] == 'E'))
 			data->enemy_dir = 0;
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_L, data->old_d_x * 50, data->d_y * 50);
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_D, data->d_x * 50, data->d_y * 50);
+		if (data->p_x == data->d_x && data->p_y == data->d_y)
+			exit(0);
 	}
-	usleep(20000); // Delay for 10 milliseconds
 	sleep_d++;
 	return (0);
 }
