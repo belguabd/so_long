@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_width_height.c                                 :+:      :+:    :+:   */
+/*   set_width_height_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:15:18 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/17 17:33:59 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:32:16 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../so_long_bonus.h"
 
 void set_width_height(t_data *data, char const *av)
 {
@@ -30,6 +30,7 @@ void set_width_height(t_data *data, char const *av)
     while (line)
     {
         data->height++;
+        free(line);
         line = get_next_line(fd);
     }
     close(fd);

@@ -6,11 +6,11 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:42:50 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 11:53:41 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:32:12 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../so_long_bonus.h"
 
 void render_map(t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/18 01:52:11 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:50:19 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int key_handler(int keycode, t_data *data)
 	update_position_and_map(data, new_y, new_x);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_B, 50, 50);
-	render_map( data);
+	render_map(data);
 	return (0);
 }
 void locate_player_in_map(t_data *data)
@@ -101,11 +101,16 @@ void display(t_data *data)
 		y++;
 	}
 }
+void f()
+{
+	system("leaks so_long");
+}
 int main(int ac, char const *av[])
 {
 	t_data data;
 	validate_and_set_params(&data, av[1], ac);
 	set_width_height(&data, av[1]);
+	// atexit(f);
 	ft_set_map(&data, data.height, av[1]);
 
 	if (!data.t_map[0][0])
@@ -127,9 +132,3 @@ int main(int ac, char const *av[])
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
-
-		
-
-
-
-

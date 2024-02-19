@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 15:39:11 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 16:55:42 by belguabd         ###   ########.fr       */
+/*   Created: 2024/02/19 16:21:51 by belguabd          #+#    #+#             */
+/*   Updated: 2024/02/19 16:47:09 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-#define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+#define SO_LONG_BONUS_H
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -48,9 +48,18 @@ typedef struct data
     void *img_W;
     void *img_E;
     void *img_EO;
+    void *img_D;
+    void *img_L;
     size_t C_count;
     size_t P_count;
     size_t E_count;
+    size_t enemy_dir;
+    size_t d_x;
+    size_t d_y;
+    size_t old_d_x;
+    size_t old_d_y;
+    int nbr_enemy;
+
 } t_data;
 
 /*libft*/
@@ -75,4 +84,7 @@ void ft_set_map(t_data *data, size_t height, char const *av);
 void render_map(t_data *data);
 void initialize_data(t_data *data);
 int close_window(t_data *data);
+
+/*print moves*/
+void ft_itoa(int n, char **nbr, char *word);
 #endif

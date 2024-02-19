@@ -6,11 +6,11 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:52 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 15:03:43 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:31:59 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../so_long_bonus.h"
 static size_t get_len(int n)
 {
     size_t len;

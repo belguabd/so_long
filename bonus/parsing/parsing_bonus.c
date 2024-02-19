@@ -6,11 +6,11 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 18:24:53 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 10:38:02 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:31:45 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../so_long_bonus.h"
 
 int ft_compare(char const *str, char *input)
 {

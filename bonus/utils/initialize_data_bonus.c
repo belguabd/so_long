@@ -6,11 +6,11 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:45:09 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 12:29:39 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:32:09 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "../so_long_bonus.h"
 
 void initialize_data(t_data *data)
 {
@@ -20,9 +20,7 @@ void initialize_data(t_data *data)
     data->enemy_dir = 0;
     data->d_x = 0;
     data->d_y = 0;
-    // data->img_B = mlx_xpm_file_to_image(data->mlx_ptr, "./bonus/textures/background.xpm", &w, &h);
-    // if (!data->img_B)
-    //     ft_putstr_fd("Error: The background image is not found\n", 2);
+
     data->img_L = mlx_xpm_file_to_image(data->mlx_ptr, "./bonus/textures/land.xpm", &w, &h);
     if (!data->img_L)
         ft_putstr_fd("Error: The background image is not found\n", 2);

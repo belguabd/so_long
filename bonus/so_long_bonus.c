@@ -6,11 +6,11 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 15:11:47 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:43:46 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long_bonus.h"
 #include <stdio.h>
 #include "./mlx.h"
 int animation(t_data *data);
@@ -210,7 +210,7 @@ int animation(t_data *data)
 int main(int ac, char const *av[])
 {
 	t_data data;
-	
+
 	validate_and_set_params(&data, av[1], ac);
 	set_width_height(&data, av[1]);
 	ft_set_map(&data, data.height, av[1]);
