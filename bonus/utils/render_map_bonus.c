@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:42:50 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/18 10:44:55 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 11:53:41 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void render_map(t_data *data)
 {
 	int x = 0;
 	int y = 0;
-
 	while (data->t_map[y])
 	{
 		x = 0;
@@ -36,4 +35,5 @@ void render_map(t_data *data)
 		y++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_P, data->p_x * 50, data->p_y * 50);
+	
 }

@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:39:11 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 09:50:59 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:03:53 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,7 @@ void ft_set_map(t_data *data, size_t height, char const *av);
 void render_map(t_data *data);
 void initialize_data(t_data *data);
 int close_window(t_data *data);
+
+/*print moves*/
+void ft_itoa(int n, char **nbr, char *word);
 #endif

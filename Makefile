@@ -6,7 +6,7 @@
 #    By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 16:26:12 by belguabd          #+#    #+#              #
-#    Updated: 2024/02/18 01:47:04 by belguabd         ###   ########.fr        #
+#    Updated: 2024/02/19 12:24:56 by belguabd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRC_B =  $(BONUS)/so_long_bonus.c \
     $(BONUS)/$(GET_NEXT_LINE)/get_next_line_bonus.c $(BONUS)/$(GET_NEXT_LINE)/get_next_line_utils_bonus.c \
 	$(BONUS)/$(PARSING)/parsing_bonus.c $(BONUS)/$(PARSING)/parsing_utils_bonus.c\
 	$(BONUS)/$(UTILS)/ft_putstr_fd_bonus.c $(BONUS)/$(UTILS)/flood_fill_bonus.c $(BONUS)/$(UTILS)/set_width_height_bonus.c $(BONUS)/$(UTILS)/ft_set_map_bonus.c\
-	$(BONUS)/$(UTILS)/render_map_bonus.c $(BONUS)/$(UTILS)/initialize_data_bonus.c $(BONUS)/$(UTILS)/close_window_bonus.c
+	$(BONUS)/$(UTILS)/render_map_bonus.c $(BONUS)/$(UTILS)/initialize_data_bonus.c $(BONUS)/$(UTILS)/close_window_bonus.c $(BONUS)/$(UTILS)/ft_itoa_bonus.c
 #------Objects------#
 OBJ = $(SRC:.c=.o)
 OBJB = $(SRC_B:.c=.o)

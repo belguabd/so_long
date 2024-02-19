@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:45:09 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 09:02:28 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:29:39 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void initialize_data(t_data *data)
 {
     int w;
     int h;
-    data->nbr_move = 1;
+    data->nbr_move = 0;
     data->enemy_dir = 0;
     data->d_x = 0;
     data->d_y = 0;

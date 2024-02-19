@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 10:54:31 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:11:47 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void update_position_and_map(t_data *data, size_t new_y, size_t new_x)
 
 		data->p_y = new_y;
 		data->p_x = new_x;
+		data->nbr_move++;
 		// printf("%zu\n", data->nbr_move++);
 	}
 	if (data->C_count == 0)
@@ -62,6 +63,10 @@ int key_handler(int keycode, t_data *data)
 	update_position_and_map(data, new_y, new_x);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	render_map(data);
+	char *nbr;
+	ft_itoa(data->nbr_move, &nbr, "player moves = ");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 1 * 30, 0, 0xFFFFFF, nbr);
+	free(nbr);
 	return (0);
 }
 void locate_player_in_map(t_data *data)
@@ -84,22 +89,6 @@ void locate_player_in_map(t_data *data)
 		y++;
 	}
 }
-// void display(t_data *data)
-// {
-// 	int y = 0;
-// 	int x = 0;
-// 	while (data->d_map[y][x])
-// 	{
-// 		x = 0;
-// 		while (data->d_map[y][x])
-// 		{
-// 			printf("%c", data->d_map[y][x]);
-// 			x++;
-// 		}
-// 		printf("\n");
-// 		y++;
-// 	}
-// }
 void find_pos_d(t_data *data)
 {
 	int x = 0;
@@ -155,23 +144,6 @@ void find_pos_mld(t_data data, Enemy *enemies, int *i)
 		}
 		y++;
 	}
-}
-void display(t_data data)
-{
-	int x = 0;
-	int y = 0;
-	while (data.t_map[y])
-	{
-		x = 0;
-		while (data.t_map[y][x])
-		{
-			printf("%c", data.t_map[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
-	printf("+++++++++++++++++++\n");
 }
 void init_enemies(Enemy *enemies, int max_enemy, t_data data)
 {
@@ -238,10 +210,10 @@ int animation(t_data *data)
 int main(int ac, char const *av[])
 {
 	t_data data;
+	
 	validate_and_set_params(&data, av[1], ac);
 	set_width_height(&data, av[1]);
 	ft_set_map(&data, data.height, av[1]);
-
 	if (!data.t_map[0][0])
 		ft_putstr_fd("Error: The map is empty\n", 2);
 	locate_player_in_map(&data);
@@ -259,7 +231,7 @@ int main(int ac, char const *av[])
 	mlx_hook(data.win_ptr, 17, 0, close_window, &data);
 	mlx_loop_hook(data.mlx_ptr, animation, &data);
 	render_map(&data);
+	mlx_string_put(data.mlx_ptr, data.win_ptr, 1 * 30, 0, 0xFFFFFF, "player moves = ");
 	mlx_loop(data.mlx_ptr);
-
 	return (0);
 }
