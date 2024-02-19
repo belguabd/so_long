@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 18:24:53 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 09:52:13 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:38:02 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void validate_characters(t_data *data, size_t i)
             data->C_count++;
         if (data->t_map[i][j] == 'E')
             data->E_count++;
-        if (data->t_map[i][j] == 'E')
+        if (data->t_map[i][j] == 'D')
             data->nbr_enemy++;
         if (data->t_map[i][j] != 'P' && data->t_map[i][j] != 'E' && data->t_map[i][j] != 'C' &&
             data->t_map[i][j] != '1' && data->t_map[i][j] != '0' && data->t_map[i][j] != 'D')

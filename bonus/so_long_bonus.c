@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 10:03:40 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:54:31 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,17 +188,18 @@ int animation(t_data *data)
 {
 	static int sleep_d;
 	static int max_enemy = 3;
-	static Enemy enemies[3];
-	static int init = 0;
-	if (!init)
+	static Enemy *enemies = NULL;
+	if (!enemies)
 	{
+		enemies = (Enemy *)malloc(data->nbr_enemy * sizeof(Enemy));
+		if (!enemies)
+			exit(1);
 		init_enemies(enemies, max_enemy, *data);
-		init++;
 	}
 	int i = 0;
 	if (sleep_d % 2000 == 1)
 	{
-		while (i < 3)
+		while (i < data->nbr_enemy)
 		{
 			if (enemies[i].enemy_dir == 0 && (data->t_map[enemies[i].d_y][enemies[i].d_x + 1] != '1' &&
 											  data->t_map[enemies[i].d_y][enemies[i].d_x + 1] != 'C' &&
@@ -224,7 +225,10 @@ int animation(t_data *data)
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_L, enemies[i].old_d_x * 50, enemies[i].old_d_y * 50);
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_D, enemies[i].d_x * 50, enemies[i].d_y * 50);
 			if (data->p_x == enemies[i].d_x && data->p_y == enemies[i].d_y)
+			{
+				write(1, "I lost\n", 6);
 				exit(0);
+			}
 			i++;
 		}
 	}
@@ -251,7 +255,6 @@ int main(int ac, char const *av[])
 	size_t win_width = data.width * 50;
 	size_t win_height = data.height * 50;
 	data.win_ptr = mlx_new_window(data.mlx_ptr, win_width, win_height, "so_long");
-
 	mlx_hook(data.win_ptr, 2, 0, key_handler, &data);
 	mlx_hook(data.win_ptr, 17, 0, close_window, &data);
 	mlx_loop_hook(data.mlx_ptr, animation, &data);
