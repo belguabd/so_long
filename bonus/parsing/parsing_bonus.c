@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 18:24:53 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/17 19:29:08 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 09:52:13 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int ft_compare(char const *str, char *input)
     while (str[i] && str[i] == input[i])
         i++;
     return (str[i] - input[i]);
-    
 }
 int valid_file(char const *file)
 {
@@ -48,11 +47,14 @@ void validate_characters(t_data *data, size_t i)
             data->C_count++;
         if (data->t_map[i][j] == 'E')
             data->E_count++;
+        if (data->t_map[i][j] == 'E')
+            data->nbr_enemy++;
         if (data->t_map[i][j] != 'P' && data->t_map[i][j] != 'E' && data->t_map[i][j] != 'C' &&
             data->t_map[i][j] != '1' && data->t_map[i][j] != '0' && data->t_map[i][j] != 'D')
             ft_putstr_fd("Error: Invalid character in the map\n", 2);
         j++;
     }
+    
 }
 void validate_map(t_data *data, size_t tmp_h)
 {

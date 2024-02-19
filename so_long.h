@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:39:11 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/18 10:42:33 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 09:50:59 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 /*start get_next_line*/
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 10
+#define NBR_EMEGY 0
 #endif
 
 char *get_next_line(int fd);
@@ -57,6 +58,7 @@ typedef struct data
     size_t d_y;
     size_t old_d_x;
     size_t old_d_y;
+    int nbr_enemy;
 
 } t_data;
 

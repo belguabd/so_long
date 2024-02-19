@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/18 12:46:00 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:03:40 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,22 +84,22 @@ void locate_player_in_map(t_data *data)
 		y++;
 	}
 }
-void display(t_data *data)
-{
-	int y = 0;
-	int x = 0;
-	while (data->d_map[y][x])
-	{
-		x = 0;
-		while (data->d_map[y][x])
-		{
-			printf("%c", data->d_map[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
-}
+// void display(t_data *data)
+// {
+// 	int y = 0;
+// 	int x = 0;
+// 	while (data->d_map[y][x])
+// 	{
+// 		x = 0;
+// 		while (data->d_map[y][x])
+// 		{
+// 			printf("%c", data->d_map[y][x]);
+// 			x++;
+// 		}
+// 		printf("\n");
+// 		y++;
+// 	}
+// }
 void find_pos_d(t_data *data)
 {
 	int x = 0;
@@ -122,35 +122,111 @@ void find_pos_d(t_data *data)
 		y++;
 	}
 }
+typedef struct enemies_solong
+{
+	size_t enemy_dir;
+	size_t d_x;
+	size_t d_y;
+	size_t old_d_x;
+	size_t old_d_y;
+
+} Enemy;
+
+void find_pos_mld(t_data data, Enemy *enemies, int *i)
+{
+	int x = 0;
+	int y = 0;
+	while (data.d_map[y])
+	{
+		x = 0;
+		while (data.d_map[y][x])
+		{
+			if (data.d_map[y][x] == 'D')
+			{
+				enemies[(*i)].d_x = x;
+				enemies[(*i)].d_y = y;
+				enemies[(*i)].enemy_dir = 0;
+				enemies[(*i)].old_d_x = enemies[(*i)].d_x;
+				enemies[(*i)].old_d_y = enemies[(*i)].d_y;
+				data.d_map[y][x] = '0';
+				return;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+void display(t_data data)
+{
+	int x = 0;
+	int y = 0;
+	while (data.t_map[y])
+	{
+		x = 0;
+		while (data.t_map[y][x])
+		{
+			printf("%c", data.t_map[y][x]);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
+	printf("+++++++++++++++++++\n");
+}
+void init_enemies(Enemy *enemies, int max_enemy, t_data data)
+{
+
+	int i = 0;
+	(void)max_enemy;
+	while (i < max_enemy)
+	{
+		find_pos_mld(data, enemies, &i);
+		i++;
+	}
+}
 int animation(t_data *data)
 {
 	static int sleep_d;
-
+	static int max_enemy = 3;
+	static Enemy enemies[3];
+	static int init = 0;
+	if (!init)
+	{
+		init_enemies(enemies, max_enemy, *data);
+		init++;
+	}
+	int i = 0;
 	if (sleep_d % 2000 == 1)
 	{
-		find_pos_d(data);
-		if (data->enemy_dir == 0 && (data->t_map[data->d_y][data->d_x + 1] != '1' && data->t_map[data->d_y][data->d_x + 1] != 'C' && data->t_map[data->d_y][data->d_x + 1] != 'E'))
+		while (i < 3)
 		{
-			data->t_map[data->d_y][data->d_x] = '0';
-			data->old_d_x = data->d_x;
-			data->d_x++;
-			data->t_map[data->d_y][data->d_x] = 'D';
+			if (enemies[i].enemy_dir == 0 && (data->t_map[enemies[i].d_y][enemies[i].d_x + 1] != '1' &&
+											  data->t_map[enemies[i].d_y][enemies[i].d_x + 1] != 'C' &&
+											  data->t_map[enemies[i].d_y][enemies[i].d_x + 1] != 'E'))
+			{
+				enemies[i].old_d_x = enemies[i].d_x;
+				enemies[i].old_d_y = enemies[i].d_y;
+				enemies[i].d_x++;
+			}
+			else if (enemies[i].enemy_dir == 0 && (data->t_map[enemies[i].d_y][enemies[i].d_x + 1] == '1' || data->t_map[enemies[i].d_y][enemies[i].d_x + 1] == 'C' || data->t_map[enemies[i].d_y][enemies[i].d_x + 1] == 'E'))
+				enemies[i].enemy_dir = 1;
+			if (enemies[i].enemy_dir == 1 && (data->t_map[enemies[i].d_y][enemies[i].d_x - 1] != '1' && data->t_map[enemies[i].d_y][enemies[i].d_x - 1] != 'C' && data->t_map[enemies[i].d_y][enemies[i].d_x - 1] != 'E'))
+			{
+				enemies[i].old_d_x = enemies[i].d_x;
+				enemies[i].old_d_y = enemies[i].d_y;
+				enemies[i].d_x--;
+			}
+			else if (enemies[i].enemy_dir == 1 && (data->t_map[enemies[i].d_y][enemies[i].d_x - 1] == '1' || data->t_map[enemies[i].d_y][enemies[i].d_x - 1] == 'C' || data->t_map[enemies[i].d_y][enemies[i].d_x - 1] == 'E'))
+				enemies[i].enemy_dir = 0;
+
+			data->t_map[enemies[i].old_d_y][enemies[i].old_d_x] = '0';
+			data->t_map[enemies[i].d_y][enemies[i].d_x] = 'D';
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_L, enemies[i].old_d_x * 50, enemies[i].old_d_y * 50);
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_D, enemies[i].d_x * 50, enemies[i].d_y * 50);
+			if (data->p_x == enemies[i].d_x && data->p_y == enemies[i].d_y)
+				exit(0);
+			i++;
 		}
-		else if (data->enemy_dir == 0 && (data->t_map[data->d_y][data->d_x + 1] == '1' || data->t_map[data->d_y][data->d_x + 1] == 'C' || data->t_map[data->d_y][data->d_x + 1] == 'E'))
-			data->enemy_dir = 1;
-		if (data->enemy_dir == 1 && (data->t_map[data->d_y][data->d_x - 1] != '1' && data->t_map[data->d_y][data->d_x - 1] != 'C' && data->t_map[data->d_y][data->d_x - 1] != 'E'))
-		{
-			data->t_map[data->d_y][data->d_x] = '0';
-			data->old_d_x = data->d_x;
-			data->d_x--;
-			data->t_map[data->d_y][data->d_x] = 'D';
-		}
-		else if (data->enemy_dir == 1 && (data->t_map[data->d_y][data->d_x - 1] == '1' || data->t_map[data->d_y][data->d_x - 1] == 'C' || data->t_map[data->d_y][data->d_x - 1] == 'E'))
-			data->enemy_dir = 0;
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_L, data->old_d_x * 50, data->d_y * 50);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_D, data->d_x * 50, data->d_y * 50);
-		if (data->p_x == data->d_x && data->p_y == data->d_y)
-			exit(0);
 	}
 	sleep_d++;
 	return (0);
@@ -169,6 +245,7 @@ int main(int ac, char const *av[])
 	flood_fill(data, data.p_y, data.p_x);
 	if (has_elements(data))
 		ft_putstr_fd("Invalid map\n", 2);
+	ft_set_map(&data, data.height, av[1]);
 	data.mlx_ptr = mlx_init();
 	initialize_data(&data);
 	size_t win_width = data.width * 50;
