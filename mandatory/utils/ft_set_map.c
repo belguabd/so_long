@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:19:36 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 16:12:35 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:09:38 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,3 +88,4 @@ void ft_set_map(t_data *data, size_t height, char const *av)
     read_and_store_map_data(data, fd);
     close(fd);
 }
+

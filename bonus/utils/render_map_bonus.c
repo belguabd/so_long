@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:42:50 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 16:32:12 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 22:20:48 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,4 @@ void render_map(t_data *data)
 		y++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_P, data->p_x * 50, data->p_y * 50);
-	
 }

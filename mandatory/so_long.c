@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 16:50:19 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:44:56 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int key_handler(int keycode, t_data *data)
 		new_y--;
 	else if (keycode == KEY_RIGHT)
 		new_x++;
-	update_position_and_map(data, new_y, new_x);
+	if (keycode == KEY_DOWN || keycode == KEY_LEFT || keycode == KEY_UP || keycode == KEY_RIGHT)
+		update_position_and_map(data, new_y, new_x);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_B, 50, 50);
 	render_map(data);
@@ -101,10 +102,10 @@ void display(t_data *data)
 		y++;
 	}
 }
-void f()
-{
-	system("leaks so_long");
-}
+// void f()
+// {
+// 	system("leaks so_long");
+// }
 int main(int ac, char const *av[])
 {
 	t_data data;

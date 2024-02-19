@@ -6,7 +6,7 @@
 #    By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 16:26:12 by belguabd          #+#    #+#              #
-#    Updated: 2024/02/19 12:24:56 by belguabd         ###   ########.fr        #
+#    Updated: 2024/02/19 21:28:59 by belguabd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,11 @@ BONUS=bonus
 RM = rm -f
 
 #------Sources------#
-SRC = so_long.c \
-    $(GET_NEXT_LINE)/get_next_line.c $(GET_NEXT_LINE)/get_next_line_utils.c \
-	$(PARSING)/parsing.c $(PARSING)/parsing_utils.c\
-	$(UTILS)/ft_putstr_fd.c $(UTILS)/flood_fill.c $(UTILS)/set_width_height.c $(UTILS)/ft_set_map.c\
-	$(UTILS)/render_map.c $(UTILS)/initialize_data.c $(UTILS)/close_window.c
+SRC = ./mandatory/so_long.c \
+	./mandatory/$(GET_NEXT_LINE)/get_next_line.c ./mandatory/$(GET_NEXT_LINE)/get_next_line_utils.c \
+	./mandatory/$(PARSING)/parsing.c ./mandatory/$(PARSING)/parsing_utils.c\
+	./mandatory/$(UTILS)/ft_putstr_fd.c ./mandatory/$(UTILS)/flood_fill.c ./mandatory/$(UTILS)/set_width_height.c ./mandatory/$(UTILS)/ft_set_map.c\
+	./mandatory/$(UTILS)/render_map.c ./mandatory/$(UTILS)/initialize_data.c ./mandatory/$(UTILS)/close_window.c ./mandatory/$(UTILS)/ft_itoa.c
 
 SRC_B =  $(BONUS)/so_long_bonus.c \
     $(BONUS)/$(GET_NEXT_LINE)/get_next_line_bonus.c $(BONUS)/$(GET_NEXT_LINE)/get_next_line_utils_bonus.c \
@@ -56,7 +56,10 @@ bonus:$(OBJB)
 	
 	
 #------Compilation------#
-%.o: %.c so_long.h
+./mandatory/%.o: ./mandatory/%.c ./mandatory/so_long.h
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+./bonus/%.o: ./bonus/%.c ./bonus/so_long_bonus.h
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 #------Clean------#

@@ -6,15 +6,17 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 18:24:53 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 16:31:45 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:10:52 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
 
+
 int ft_compare(char const *str, char *input)
 {
     int i = 0;
+    
     while (str[i] && str[i] == input[i])
         i++;
     return (str[i] - input[i]);

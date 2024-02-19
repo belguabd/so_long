@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 16:43:46 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/19 22:34:42 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void update_position_and_map(t_data *data, size_t new_y, size_t new_x)
 {
 
 	char *element = &data->t_map[new_y][new_x];
-	if (*element == 'C' || *element == '0' || *element == 'P' || *element == 'E')
+	if (*element == 'C' || *element == '0' || *element == 'P' || *element == 'E' || *element == 'D')
 	{
 		if (*element == 'C')
 		{
@@ -60,7 +60,8 @@ int key_handler(int keycode, t_data *data)
 		new_y--;
 	else if (keycode == KEY_RIGHT)
 		new_x++;
-	update_position_and_map(data, new_y, new_x);
+	if (keycode == KEY_DOWN || keycode == KEY_LEFT || keycode == KEY_UP || keycode == KEY_RIGHT)
+		update_position_and_map(data, new_y, new_x);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	render_map(data);
 	char *nbr;
@@ -191,14 +192,13 @@ int animation(t_data *data)
 			}
 			else if (enemies[i].enemy_dir == 1 && (data->t_map[enemies[i].d_y][enemies[i].d_x - 1] == '1' || data->t_map[enemies[i].d_y][enemies[i].d_x - 1] == 'C' || data->t_map[enemies[i].d_y][enemies[i].d_x - 1] == 'E'))
 				enemies[i].enemy_dir = 0;
-
 			data->t_map[enemies[i].old_d_y][enemies[i].old_d_x] = '0';
 			data->t_map[enemies[i].d_y][enemies[i].d_x] = 'D';
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_L, enemies[i].old_d_x * 50, enemies[i].old_d_y * 50);
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_D, enemies[i].d_x * 50, enemies[i].d_y * 50);
-			if (data->p_x == enemies[i].d_x && data->p_y == enemies[i].d_y)
+			if ((data->p_x == enemies[i].d_x && data->p_y == enemies[i].d_y) || (data->p_x == enemies[i].old_d_x && data->p_y == enemies[i].old_d_y))
 			{
-				write(1, "I lost\n", 6);
+				write(1, "LOSERR\n", 6);
 				exit(0);
 			}
 			i++;
