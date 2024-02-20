@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:19:36 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/20 10:04:41 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:10:14 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char *getstruntilnl(char *line)
         i++;
     }
     new[i] = '\0';
-    // free(line);
     return (new);
 }
 void validate_file_and_get_line(char const *av, size_t height)
@@ -39,7 +38,7 @@ void validate_file_and_get_line(char const *av, size_t height)
     size_t i;
     fd = open(av, O_RDWR);
     if (fd < 0)
-        ft_putstr_fd("Error: The file does not exist\n", 2);
+        ft_putstr_fd("Error\n: The file does not exist\n", 2);
     line = get_next_line(fd);
     i = 0;
     while (i++ < height - 1)
@@ -50,7 +49,7 @@ void validate_file_and_get_line(char const *av, size_t height)
     i = 0;
     while (line[i])
         if (line[i++] == '\n')
-            ft_putstr_fd("Invalid map: Newline is not allowed in the last line\n", 2);
+            ft_putstr_fd("Error\nInvalid map: Newline is not allowed in the last line\n", 2);
     free(line);
     close(fd);
 }
@@ -81,7 +80,7 @@ void ft_set_map(t_data *data, size_t height, char const *av)
     validate_file_and_get_line(av, height);
     fd = open(av, O_RDWR);
     if (fd < 0)
-        ft_putstr_fd("Error: The file does not exist\n", 2);
+        ft_putstr_fd("Error\n: The file does not exist\n", 2);
     data->t_map = (char **)malloc((height + 1) * sizeof(char *));
     if (!data->t_map)
     {

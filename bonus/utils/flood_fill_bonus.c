@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:09:25 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 16:31:56 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/20 14:29:50 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void flood_fill(t_data data, size_t y, size_t x)
 {
-    if (data.d_map[y][x] == '1' || data.d_map[y][x] == 'v')
+    if (data.d_map[y][x] == '1' || data.d_map[y][x] == 'v' || data.d_map[y][x] == 'D')
         return;
     data.d_map[y][x] = 'v';
     flood_fill(data, y + 1, x);

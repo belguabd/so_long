@@ -6,12 +6,11 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 18:24:53 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 18:10:52 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:05:55 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
-
 
 int ft_compare(char const *str, char *input)
 {
@@ -81,7 +80,6 @@ void validate_map(t_data *data, size_t tmp_h)
     if (data->E_count != 1)
         ft_putstr_fd("Error: There should be exactly one 'E' character\n", 2);
 }
-#include <stdio.h>
 void parsing(t_data *data, size_t height, size_t width)
 {
     size_t i;

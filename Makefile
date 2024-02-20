@@ -6,12 +6,12 @@
 #    By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 16:26:12 by belguabd          #+#    #+#              #
-#    Updated: 2024/02/19 21:28:59 by belguabd         ###   ########.fr        #
+#    Updated: 2024/02/20 15:04:39 by belguabd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Ofast
+CFLAGS = -Wall -Wextra -Werror 
 
 #------Folder------#
 GET_NEXT_LINE = get_next_line
@@ -30,7 +30,7 @@ SRC = ./mandatory/so_long.c \
 	./mandatory/$(UTILS)/ft_putstr_fd.c ./mandatory/$(UTILS)/flood_fill.c ./mandatory/$(UTILS)/set_width_height.c ./mandatory/$(UTILS)/ft_set_map.c\
 	./mandatory/$(UTILS)/render_map.c ./mandatory/$(UTILS)/initialize_data.c ./mandatory/$(UTILS)/close_window.c ./mandatory/$(UTILS)/ft_itoa.c
 
-SRC_B =  $(BONUS)/so_long_bonus.c \
+SRC_B =  $(BONUS)/so_long_bonus.c $(BONUS)/animation_bonus.c $(BONUS)/animation_bonus_utils.c\
     $(BONUS)/$(GET_NEXT_LINE)/get_next_line_bonus.c $(BONUS)/$(GET_NEXT_LINE)/get_next_line_utils_bonus.c \
 	$(BONUS)/$(PARSING)/parsing_bonus.c $(BONUS)/$(PARSING)/parsing_utils_bonus.c\
 	$(BONUS)/$(UTILS)/ft_putstr_fd_bonus.c $(BONUS)/$(UTILS)/flood_fill_bonus.c $(BONUS)/$(UTILS)/set_width_height_bonus.c $(BONUS)/$(UTILS)/ft_set_map_bonus.c\
@@ -72,7 +72,7 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) $(NAME_BONUS)
-	@echo "$(RED)Program and MiniLibX objects removed : \033[1;31mOK\033[m"
+	@echo "$(RED)Program removed : \033[1;31mOK\033[m"
 
 #------re------#
 re: fclean all bonus

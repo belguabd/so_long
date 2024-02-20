@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/20 11:17:20 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/20 15:11:57 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void update_position_and_map(t_data *data, size_t new_y, size_t new_x)
 			data->C_count--;
 			*element = '0';
 		}
-
 		data->p_y = new_y;
 		data->p_x = new_x;
 		printf("%zu\n", data->nbr_move++);
@@ -35,16 +34,6 @@ void update_position_and_map(t_data *data, size_t new_y, size_t new_x)
 		data->img_E = data->img_EO;
 		if (*element == 'E')
 		{
-			// int i;
-			// i = 0;
-			// while (data->t_map[i])
-			// {
-			// 	free(data->t_map[i]);
-			// 	free(data->d_map[i]);
-			// 	i++;
-			// }
-			// free(data->t_map[i]);
-			// free(data->d_map[i]);
 			write(1, "YOU WIN\n", 9);
 			exit(0);
 		}
@@ -119,12 +108,12 @@ int main(int ac, char const *av[])
 	set_width_height(&data, av[1]);
 	ft_set_map(&data, data.height, av[1]);
 	if (!data.t_map[0][0])
-		ft_putstr_fd("Error: The map is empty\n", 2);
+		ft_putstr_fd("Error\n The map is empty\n", 2);
 	locate_player_in_map(&data);
 	parsing(&data, data.height, data.width);
 	flood_fill(data, data.p_y, data.p_x);
 	if (has_elements(data))
-		ft_putstr_fd("Invalid map\n", 2);
+		ft_putstr_fd("Error\nInvalid map\n", 2);
 	data.mlx_ptr = mlx_init();
 	initialize_data(&data);
 	size_t win_width = data.width * 50;
