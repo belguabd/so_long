@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:15:18 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/17 14:16:45 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:12:39 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void set_width_height(t_data *data, char const *av)
     while (line)
     {
         data->height++;
+        free(line);
         line = get_next_line(fd);
     }
+    free(line);
     close(fd);
 }
