@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:19:36 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/20 15:10:14 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:11:40 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,13 @@ void validate_file_and_get_line(char const *av, size_t height)
     }
     i = 0;
     while (line[i])
+    {
         if (line[i++] == '\n')
+        {
+            free(line);
             ft_putstr_fd("Error\nInvalid map: Newline is not allowed in the last line\n", 2);
+        }
+    }
     free(line);
     close(fd);
 }
@@ -66,10 +71,8 @@ void read_and_store_map_data(t_data *data, int fd)
         line = get_next_line(fd);
         i++;
     }
-    close(fd);
     data->t_map[i] = NULL;
     data->d_map[i] = NULL;
-    close(fd);
     free(line);
 }
 void ft_set_map(t_data *data, size_t height, char const *av)

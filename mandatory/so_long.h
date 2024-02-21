@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:39:11 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 21:46:12 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 10:30:28 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct data
 /*libft*/
 char *ft_strchr(const char *s, int c);
 
-
 /*macro*/
 #define KEY_UP 126
 #define KEY_DOWN 125
@@ -68,7 +67,7 @@ void parsing(t_data *data, size_t height, size_t width);
 void validate_and_set_params(t_data *data, char const *av, int ac);
 int valid_file(char const *file);
 /*utils*/
-void ft_putstr_fd(char *s, int fd);  
+void ft_putstr_fd(char *s, int fd);
 void flood_fill(t_data data, size_t y, size_t x);
 bool has_elements(t_data data);
 void set_width_height(t_data *data, char const *av);
@@ -77,6 +76,8 @@ void render_map(t_data *data);
 void initialize_data(t_data *data);
 int close_window(t_data *data);
 /*print moves*/
-void ft_itoa(int n, char **nbr, char *word);
+void ft_itoa(int n, char **nbr, char *word,t_data *data);
+/*free*/
+void free_map_data(t_data *data);
 
 #endif

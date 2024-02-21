@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:45:45 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/20 15:00:10 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:23:36 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,17 @@ void update_enemy_direction(Enemy *enemy, t_data *data, int i)
     else if (enemy[i].enemy_dir == 1 && is_special_character(c_left))
         enemy[i].enemy_dir = 0;
 }
-void update_enemy_positon(Enemy *enemy, t_data *data, int i)
+void update_enemy_positon(Enemy *enemies, t_data *data, int i)
 {
-    data->t_map[enemy[i].old_d_y][enemy[i].old_d_x] = '0';
-    data->t_map[enemy[i].d_y][enemy[i].d_x] = 'D';
-    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_L, enemy[i].old_d_x * 50, enemy[i].old_d_y * 50);
-    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_D, enemy[i].d_x * 50, enemy[i].d_y * 50);
-    if ((data->p_x == enemy[i].d_x && data->p_y == enemy[i].d_y) || 
-        (data->p_x == enemy[i].old_d_x && data->p_y == enemy[i].old_d_y))
+    data->t_map[enemies[i].old_d_y][enemies[i].old_d_x] = '0';
+    data->t_map[enemies[i].d_y][enemies[i].d_x] = 'D';
+    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_L, enemies[i].old_d_x * 50, enemies[i].old_d_y * 50);
+    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_D, enemies[i].d_x * 50, enemies[i].d_y * 50);
+    if ((data->p_x == enemies[i].d_x && data->p_y == enemies[i].d_y) ||
+        (data->p_x == enemies[i].old_d_x && data->p_y == enemies[i].old_d_y))
     {
+        free_enemies(enemies);
+        free_map_data(data);
         write(1, "LOSERR\n", 6);
         exit(0);
     }
@@ -65,7 +67,11 @@ int animation(t_data *data)
     {
         enemies = (Enemy *)malloc(data->nbr_enemy * sizeof(Enemy));
         if (!enemies)
+        {
+            free_map_data(data);
+            write(1, "Error\n", 6);
             exit(1);
+        }
         init_enemies(enemies, data->nbr_enemy, *data);
     }
     int i = 0;

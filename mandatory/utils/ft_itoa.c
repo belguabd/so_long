@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:52 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 17:30:50 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 10:29:57 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static size_t get_len(int n)
     return (len);
 }
 
-void ft_itoa(int n, char **nbr, char *word)
+void ft_itoa(int n, char **nbr, char *word,t_data *data)
 {
     size_t len;
     size_t i;
@@ -41,7 +41,10 @@ void ft_itoa(int n, char **nbr, char *word)
     len = get_len(n) + i;
     *nbr = (char *)malloc(len + 1);
     if (!*nbr)
+    {
+        free_map_data(data);
         exit(1);
+    }
     i = 0;
     while (word[i])
     {

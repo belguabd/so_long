@@ -6,7 +6,7 @@
 #    By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 16:26:12 by belguabd          #+#    #+#              #
-#    Updated: 2024/02/20 15:04:39 by belguabd         ###   ########.fr        #
+#    Updated: 2024/02/21 11:20:42 by belguabd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,13 @@ SRC = ./mandatory/so_long.c \
 	./mandatory/$(GET_NEXT_LINE)/get_next_line.c ./mandatory/$(GET_NEXT_LINE)/get_next_line_utils.c \
 	./mandatory/$(PARSING)/parsing.c ./mandatory/$(PARSING)/parsing_utils.c\
 	./mandatory/$(UTILS)/ft_putstr_fd.c ./mandatory/$(UTILS)/flood_fill.c ./mandatory/$(UTILS)/set_width_height.c ./mandatory/$(UTILS)/ft_set_map.c\
-	./mandatory/$(UTILS)/render_map.c ./mandatory/$(UTILS)/initialize_data.c ./mandatory/$(UTILS)/close_window.c ./mandatory/$(UTILS)/ft_itoa.c
+	./mandatory/$(UTILS)/render_map.c ./mandatory/$(UTILS)/initialize_data.c ./mandatory/$(UTILS)/close_window.c ./mandatory/$(UTILS)/ft_itoa.c ./mandatory/$(UTILS)/ft_free.c
 
 SRC_B =  $(BONUS)/so_long_bonus.c $(BONUS)/animation_bonus.c $(BONUS)/animation_bonus_utils.c\
     $(BONUS)/$(GET_NEXT_LINE)/get_next_line_bonus.c $(BONUS)/$(GET_NEXT_LINE)/get_next_line_utils_bonus.c \
 	$(BONUS)/$(PARSING)/parsing_bonus.c $(BONUS)/$(PARSING)/parsing_utils_bonus.c\
 	$(BONUS)/$(UTILS)/ft_putstr_fd_bonus.c $(BONUS)/$(UTILS)/flood_fill_bonus.c $(BONUS)/$(UTILS)/set_width_height_bonus.c $(BONUS)/$(UTILS)/ft_set_map_bonus.c\
-	$(BONUS)/$(UTILS)/render_map_bonus.c $(BONUS)/$(UTILS)/initialize_data_bonus.c $(BONUS)/$(UTILS)/close_window_bonus.c $(BONUS)/$(UTILS)/ft_itoa_bonus.c
+	$(BONUS)/$(UTILS)/render_map_bonus.c $(BONUS)/$(UTILS)/initialize_data_bonus.c $(BONUS)/$(UTILS)/close_window_bonus.c $(BONUS)/$(UTILS)/ft_itoa_bonus.c $(BONUS)/$(UTILS)/ft_free_bonus.c
 #------Objects------#
 OBJ = $(SRC:.c=.o)
 OBJB = $(SRC_B:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:15:18 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 16:32:16 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:29:11 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ void set_width_height(t_data *data, char const *av)
     data->width = 0;
     fd = open(av, O_RDWR);
     if (fd < 0)
-        ft_putstr_fd("Error: The file does not exist\n", 2);
+        ft_putstr_fd("Error\n: The file does not exist\n", 2);
     line = get_next_line(fd);
-    if (!line)
-        ft_putstr_fd("Error: The map is empty\n", 2);
+    if (!line){
+        free(line);
+        ft_putstr_fd("Error\n The map is empty\n", 2);
+    }
 
     data->width = ft_strlen(line) - 1;
     while (line)
@@ -33,5 +35,6 @@ void set_width_height(t_data *data, char const *av)
         free(line);
         line = get_next_line(fd);
     }
+    free(line);
     close(fd);
 }

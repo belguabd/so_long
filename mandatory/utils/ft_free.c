@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_window.c                                     :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/17 14:47:01 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 10:28:12 by belguabd         ###   ########.fr       */
+/*   Created: 2024/02/21 10:05:54 by belguabd          #+#    #+#             */
+/*   Updated: 2024/02/21 10:12:07 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int close_window(t_data *data)
+void free_map_data(t_data *data)
 {
-    free_map_data(data);
-    mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-    exit(0);
+    int i = 0;
+    while (data->t_map[i] != NULL)
+    {
+        free(data->t_map[i]);
+        free(data->d_map[i]);
+        i++;
+    }
+    free(data->t_map);
+    free(data->d_map);
 }

@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/20 15:03:01 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:26:59 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void update_position_and_map(t_data *data, size_t new_y, size_t new_x)
 		data->img_E = data->img_EO;
 		if (*element == 'E')
 		{
+			free_map_data(data);
 			write(1, "YOU WIN\n", 9);
 			exit(0);
 		}
@@ -41,6 +42,7 @@ void handle_escape_key(t_data *data, int keycode)
 {
 	if (keycode == ESC)
 	{
+		free_map_data(data);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		exit(0);
 	}
@@ -66,7 +68,7 @@ int key_handler(int keycode, t_data *data)
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	render_map(data);
 	char *nbr;
-	ft_itoa(data->nbr_move, &nbr, "player moves = ");
+	ft_itoa(data->nbr_move, &nbr, "player moves = ", data);
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 1 * 30, 0, 0xFFFFFF, nbr);
 	free(nbr);
 	return (0);
@@ -99,12 +101,18 @@ int main(int ac, char const *av[])
 	set_width_height(&data, av[1]);
 	ft_set_map(&data, data.height, av[1]);
 	if (!data.t_map[0][0])
-		ft_putstr_fd("Error: The map is empty\n", 2);
+	{
+		free_map_data(&data);
+		ft_putstr_fd("Error\n: The map is empty\n", 2);
+	}
 	locate_player_in_map(&data);
 	parsing(&data, data.height, data.width);
 	flood_fill(data, data.p_y, data.p_x);
 	if (has_elements(data))
-		ft_putstr_fd("Invalid map\n", 2);
+	{
+		free_map_data(&data);
+		ft_putstr_fd("Error\nInvalid map\n", 2);
+	}
 	ft_set_map(&data, data.height, av[1]);
 	data.mlx_ptr = mlx_init();
 	initialize_data(&data);

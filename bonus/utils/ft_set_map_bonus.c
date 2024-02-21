@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:19:36 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 16:32:06 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:28:39 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,24 @@ void validate_file_and_get_line(char const *av, size_t height)
     size_t i;
     fd = open(av, O_RDWR);
     if (fd < 0)
-        ft_putstr_fd("Error: The file does not exist\n", 2);
+        ft_putstr_fd("Error\n The file does not exist\n", 2);
     line = get_next_line(fd);
     i = 0;
     while (i++ < height - 1)
+    {
+        free(line);
         line = get_next_line(fd);
+    }
     i = 0;
     while (line[i])
+    {
         if (line[i++] == '\n')
-            ft_putstr_fd("Invalid map: Newline is not allowed in the last line\n", 2);
+        {
+            free(line);
+            ft_putstr_fd("Error\nInvalid map: Newline is not allowed in the last line\n", 2);
+        }
+    }
+    free(line);
     close(fd);
 }
 void read_and_store_map_data(t_data *data, int fd)
@@ -58,11 +67,13 @@ void read_and_store_map_data(t_data *data, int fd)
     {
         data->t_map[i] = getstruntilnl(line);
         data->d_map[i] = getstruntilnl(line);
+        free(line);
         line = get_next_line(fd);
         i++;
     }
     data->t_map[i] = NULL;
     data->d_map[i] = NULL;
+    free(line);
 }
 void ft_set_map(t_data *data, size_t height, char const *av)
 {
@@ -72,7 +83,7 @@ void ft_set_map(t_data *data, size_t height, char const *av)
     validate_file_and_get_line(av, height);
     fd = open(av, O_RDWR);
     if (fd < 0)
-        ft_putstr_fd("Error: The file does not exist\n", 2);
+        ft_putstr_fd("Error\nThe file does not exist\n", 2);
     data->t_map = (char **)malloc((height + 1) * sizeof(char *));
     if (!data->t_map)
     {

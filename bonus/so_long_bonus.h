@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:21:51 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/20 15:16:10 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 11:19:57 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,9 @@ void find_pos_mld(t_data data, Enemy *enemies, int *i);
 void init_enemies(Enemy *enemies, int max_enemy, t_data data);
 
 /*print moves*/
-void ft_itoa(int n, char **nbr, char *word);
+void ft_itoa(int n, char **nbr, char *word, t_data *data);
+/*free*/
+void free_enemies(Enemy *enemies);
+void free_map_data(t_data *data);
+
 #endif
