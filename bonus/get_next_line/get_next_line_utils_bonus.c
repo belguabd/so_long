@@ -6,15 +6,15 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 11:12:08 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/19 16:31:41 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:48:50 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
 
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (s[i])
@@ -22,11 +22,11 @@ size_t ft_strlen(const char *s)
 	return (i);
 }
 
-char *ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
-	int len;
-	int i;
-	char *string;
+	int		len;
+	int		i;
+	char	*string;
 
 	len = ft_strlen(s1);
 	string = (char *)malloc((len + 1) * sizeof(char));
@@ -42,11 +42,11 @@ char *ft_strdup(const char *s1)
 	return (string);
 }
 
-char *ft_strjoin(char *line, char *buffer)
+char	*ft_strjoin(char *line, char *buffer)
 {
-	char *string;
-	size_t i;
-	size_t j;
+	char	*string;
+	size_t	i;
+	size_t	j;
 
 	if (!line && !buffer)
 		return (free(line), NULL);
