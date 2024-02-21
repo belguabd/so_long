@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 11:26:59 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:33:30 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void update_position_and_map(t_data *data, size_t new_y, size_t new_x)
 	{
 		if (*element == 'C')
 		{
-			data->C_count--;
+			data->c_count--;
 			*element = '0';
 		}
 		data->p_y = new_y;
 		data->p_x = new_x;
 		data->nbr_move++;
 	}
-	if (data->C_count == 0)
+	if (data->c_count == 0)
 	{
-		data->img_E = data->img_EO;
+		data->img_e = data->img_eo;
 		if (*element == 'E')
 		{
 			free_map_data(data);

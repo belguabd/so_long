@@ -6,7 +6,7 @@
 #    By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 16:26:12 by belguabd          #+#    #+#              #
-#    Updated: 2024/02/21 11:20:42 by belguabd         ###   ########.fr        #
+#    Updated: 2024/02/21 12:40:04 by belguabd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ BONUS=bonus
 RM = rm -f
 
 #------Sources------#
-SRC = ./mandatory/so_long.c \
+SRC = ./mandatory/so_long.c ./mandatory/so_long_utils.c \
 	./mandatory/$(GET_NEXT_LINE)/get_next_line.c ./mandatory/$(GET_NEXT_LINE)/get_next_line_utils.c \
 	./mandatory/$(PARSING)/parsing.c ./mandatory/$(PARSING)/parsing_utils.c\
 	./mandatory/$(UTILS)/ft_putstr_fd.c ./mandatory/$(UTILS)/flood_fill.c ./mandatory/$(UTILS)/set_width_height.c ./mandatory/$(UTILS)/ft_set_map.c\
@@ -79,4 +79,4 @@ re: fclean all bonus
 	@echo "$(GREEN)Program recompiled : \033[1;34mOK\033[m"
 
 #------.PHONY------#
-.PHONY: clean fclean all re
+.PHONY:clean

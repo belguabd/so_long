@@ -6,11 +6,12 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:45:09 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 11:29:00 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:28:05 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
+
 
 void initialize_data(t_data *data)
 {
@@ -27,32 +28,32 @@ void initialize_data(t_data *data)
         free_map_data(data);
         ft_putstr_fd("Error\n The background image is not found\n", 2);
     }
-    data->img_C = mlx_xpm_file_to_image(data->mlx_ptr, "./bonus/textures/coll.xpm", &w, &h);
-    if (!data->img_C)
+    data->img_c = mlx_xpm_file_to_image(data->mlx_ptr, "./bonus/textures/coll.xpm", &w, &h);
+    if (!data->img_c)
     {
         free_map_data(data);
         ft_putstr_fd("Error\n The collectible image is not found\n", 2);
     }
-    data->img_W = mlx_xpm_file_to_image(data->mlx_ptr, "./bonus/textures/wall.xpm", &w, &h);
-    if (!data->img_W)
+    data->img_w = mlx_xpm_file_to_image(data->mlx_ptr, "./bonus/textures/wall.xpm", &w, &h);
+    if (!data->img_w)
     {
         free_map_data(data);
         ft_putstr_fd("Error\n The wall image is not found\n", 2);
     }
-    data->img_P = mlx_xpm_file_to_image(data->mlx_ptr, "./bonus/textures/player.xpm", &w, &h);
-    if (!data->img_P)
+    data->img_p = mlx_xpm_file_to_image(data->mlx_ptr, "./bonus/textures/player.xpm", &w, &h);
+    if (!data->img_p)
     {
         free_map_data(data);
         ft_putstr_fd("Error\n The player image is not found\n", 2);
     }
-    data->img_E = mlx_xpm_file_to_image(data->mlx_ptr, "./bonus/textures/the_door_v1.xpm", &w, &h);
-    if (!data->img_E)
+    data->img_e = mlx_xpm_file_to_image(data->mlx_ptr, "./bonus/textures/the_door_v1.xpm", &w, &h);
+    if (!data->img_e)
     {
         free_map_data(data);
         ft_putstr_fd("Error\n The door image is not found\n", 2);
     }
-    data->img_EO = mlx_xpm_file_to_image(data->mlx_ptr, "./bonus/textures/open_door_v1.xpm", &w, &h);
-    if (!data->img_EO)
+    data->img_eo = mlx_xpm_file_to_image(data->mlx_ptr, "./bonus/textures/open_door_v1.xpm", &w, &h);
+    if (!data->img_eo)
     {
         free_map_data(data);
         ft_putstr_fd("Error\n The open door image is not found\n", 2);

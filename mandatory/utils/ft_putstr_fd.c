@@ -6,20 +6,20 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:40:35 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 10:28:36 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:15:02 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int i;
+	int	i;
 
 	if (!s)
-		return;
+		return ;
 	if (fd < 0)
-		return;
+		return ;
 	i = 0;
 	while (s[i])
 	{

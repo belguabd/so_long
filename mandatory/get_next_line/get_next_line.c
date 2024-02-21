@@ -6,17 +6,17 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 02:37:07 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/13 13:39:56 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:39:30 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static char *get_new_save(char *save)
+static	char	*get_new_save(char *save)
 {
-	char *new_save;
-	int i;
-	int j;
+	char	*new_save;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -35,11 +35,11 @@ static char *get_new_save(char *save)
 	return (free(save), save = NULL, new_save);
 }
 
-static char *get_newline(char *save)
+static char	*get_newline(char *save)
 {
-	char *line;
-	int j;
-	int i;
+	char	*line;
+	int		j;
+	int		i;
 
 	if (!save[0])
 		return (NULL);
@@ -63,9 +63,9 @@ static char *get_newline(char *save)
 	return (line);
 }
 
-static bool check_newline(char *str)
+static bool	check_newline(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -77,10 +77,10 @@ static bool check_newline(char *str)
 	return (false);
 }
 
-static char *read_line(int fd, char *save)
+static char	*read_line(int fd, char *save)
 {
-	char *buffer;
-	int stop_read;
+	char	*buffer;
+	int		stop_read;
 
 	buffer = malloc((size_t)(BUFFER_SIZE) + 1);
 	if (!buffer)
@@ -94,18 +94,18 @@ static char *read_line(int fd, char *save)
 		buffer[stop_read] = '\0';
 		save = ft_strjoin(save, buffer);
 		if (!save)
-			break;
+			break ;
 		if (check_newline(save))
-			break;
+			break ;
 	}
 	free(buffer);
 	return (save);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *save;
-	char *line;
+	static char	*save;
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (0);

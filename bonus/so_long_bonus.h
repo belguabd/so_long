@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:21:51 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 11:19:57 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:27:28 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,17 @@ typedef struct data
     void *mlx_ptr;
     void *win_ptr;
     size_t nbr_move;
-    void *img_P;
-    void *img_B;
-    void *img_C;
-    void *img_W;
-    void *img_E;
-    void *img_EO;
+    void *img_p;
+    void *img_b;
+    void *img_c;
+    void *img_w;
+    void *img_e;
+    void *img_eo;
     void *img_D;
     void *img_L;
-    size_t C_count;
-    size_t P_count;
-    size_t E_count;
+    size_t c_count;
+    size_t p_count;
+    size_t e_count;
     size_t enemy_dir;
     size_t d_x;
     size_t d_y;
@@ -105,5 +105,17 @@ void ft_itoa(int n, char **nbr, char *word, t_data *data);
 /*free*/
 void free_enemies(Enemy *enemies);
 void free_map_data(t_data *data);
+void	ft_free_main(t_data *data, char *mes_error);
+/*struct for inti images*/
+typedef struct list_imgs
+{
+	char	*img_b;
+	char	*img_c;
+	char	*img_w;
+	char	*img_p;
+	char	*img_e;
+	char	*img_eo;
+
+}	t_imge;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 18:24:53 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 11:27:53 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:33:55 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void validate_characters(t_data *data, size_t i)
     while (data->t_map[i][j])
     {
         if (data->t_map[i][j] == 'P')
-            data->P_count++;
+            data->p_count++;
         if (data->t_map[i][j] == 'C')
-            data->C_count++;
+            data->c_count++;
         if (data->t_map[i][j] == 'E')
-            data->E_count++;
+            data->e_count++;
         if (data->t_map[i][j] == 'D')
             data->nbr_enemy++;
         if (data->t_map[i][j] != 'P' && data->t_map[i][j] != 'E' && data->t_map[i][j] != 'C' &&
@@ -66,9 +66,9 @@ void validate_map(t_data *data, size_t tmp_h)
     size_t j;
 
     i = 1;
-    data->C_count = 0;
-    data->P_count = 0;
-    data->E_count = 0;
+    data->c_count = 0;
+    data->p_count = 0;
+    data->e_count = 0;
     while (i < tmp_h - 1)
     {
         j = 0;
@@ -76,17 +76,17 @@ void validate_map(t_data *data, size_t tmp_h)
 
         i++;
     }
-    if (data->P_count != 1)
+    if (data->p_count != 1)
     {
         free_map_data(data);
         ft_putstr_fd("Error\n There should be exactly one 'P' character\n", 2);
     }
-    if (data->C_count == 0)
+    if (data->c_count == 0)
     {
         free_map_data(data);
         ft_putstr_fd("Error\n At least one 'C' character is required\n", 2);
     }
-    if (data->E_count != 1)
+    if (data->e_count != 1)
     {
         free_map_data(data);
         ft_putstr_fd("Error\n There should be exactly one 'E' character\n", 2);

@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   so_long_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 01:09:36 by belguabd          #+#    #+#             */
-/*   Updated: 2023/11/14 21:37:58 by belguabd         ###   ########.fr       */
+/*   Created: 2024/02/21 12:38:38 by belguabd          #+#    #+#             */
+/*   Updated: 2024/02/21 14:21:02 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_you_win(t_data *data)
 {
-	unsigned char	*str;
-	int				i;
-
-	str = (unsigned char *)s;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == (unsigned char)c)
-			return ((char *)(str + i));
-		i++;
-	}
-	if ((unsigned char)c == '\0')
-		return ((char *)(str + i));
-	return (0);
+	free_map_data(data);
+	write(1, "YOU WIN\n", 9);
+	exit(0);
 }
