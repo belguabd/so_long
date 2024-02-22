@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 18:24:53 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 14:58:17 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:09:43 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ int	ft_compare(char const *str, char *input)
 
 int	valid_file(char const *file)
 {
-	size_t	len;
-	int		i;
+	int	len;
+	int	i;
 
 	len = ft_strlen(file) - 1;
+	if (len < 4)
+		return (1);
 	i = 0;
 	while (file[len])
 	{

@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:45:09 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 18:35:32 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:07:45 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	init_imgs(t_imge *img)
 {
 	img->img_l = "./bonus/textures/land.xpm";
-	img->img_c = "./mandatory/textures/coll.xpm";
-	img->img_w = "./mandatory/textures/wall.xpm";
-	img->img_p = "./mandatory/textures/player.xpm";
-	img->img_e = "./mandatory/textures/the_door_v1.xpm";
-	img->img_eo = "./mandatory/textures/open_door_v1.xpm";
+	img->img_c = "./bonus/textures/coll.xpm";
+	img->img_w = "./bonus/textures/wall.xpm";
+	img->img_p = "./bonus/textures/player.xpm";
+	img->img_e = "./bonus/textures/the_door_v1.xpm";
+	img->img_eo = "./bonus/textures/open_door_v1.xpm";
 	img->img_d = "./bonus/textures/dragon.xpm";
 }
 
