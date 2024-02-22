@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:39:11 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 16:24:03 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:41:53 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,6 @@ void	free_map_data(t_data *data);
 void	ft_free_main(t_data *data, char *mes_error);
 /*function you win*/
 void	ft_you_win(t_data *data);
+/*initialize window*/
+void	initialize_window(t_data *data);
 #endif

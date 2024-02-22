@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:21:51 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 19:58:56 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:12:01 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,6 @@ void	locate_player_in_map(t_data *data);
 void	ft_check_empty_map(t_data *data);
 /*function you win*/
 void	ft_you_win(t_data *data);
+/*init window*/
+void	initialize_window(t_data *data);
 #endif

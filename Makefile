@@ -6,12 +6,12 @@
 #    By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 16:26:12 by belguabd          #+#    #+#              #
-#    Updated: 2024/02/21 18:58:24 by belguabd         ###   ########.fr        #
+#    Updated: 2024/02/22 12:16:13 by belguabd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 
 #------Folder------#
 GET_NEXT_LINE = get_next_line

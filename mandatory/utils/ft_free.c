@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 10:05:54 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 15:03:28 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/22 10:18:37 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	free_map_data(t_data *data)
 
 void	ft_free_main(t_data *data, char *mes_error)
 {
-	free_map_data(data);
+	if (data->t_map && data->d_map)
+		free_map_data(data);
 	ft_putstr_fd(mes_error, 2);
 }

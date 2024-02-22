@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:19:36 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 17:33:37 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:58:44 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	validate_file_and_get_line(char const *av, size_t height)
 	int		fd;
 	size_t	i;
 
-	fd = open(av, O_RDWR);
+	fd = open(av, O_RDONLY);
 	if (fd < 0)
 		ft_putstr_fd("Error\n: The file does not exist\n", 2);
 	line = get_next_line(fd);
@@ -72,7 +72,11 @@ void	read_and_store_map_data(t_data *data, int fd)
 	while (line)
 	{
 		data->t_map[i] = getstruntilnl(line);
+		if (!data->t_map[i])
+			ft_free_main(data, "Error\nMemory allocation failure using malloc");
 		data->d_map[i] = getstruntilnl(line);
+		if (!data->d_map[i])
+			ft_free_main(data, "Error\nMemory allocation failure using malloc");
 		free(line);
 		line = get_next_line(fd);
 		i++;
@@ -89,7 +93,7 @@ void	ft_set_map(t_data *data, size_t height, char const *av)
 
 	i = 0;
 	validate_file_and_get_line(av, height);
-	fd = open(av, O_RDWR);
+	fd = open(av, O_RDONLY);
 	if (fd < 0)
 		ft_putstr_fd("Error\n: The file does not exist\n", 2);
 	data->t_map = (char **)malloc((height + 1) * sizeof(char *));

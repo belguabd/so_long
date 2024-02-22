@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 19:50:39 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:14:07 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ void	hooks(t_data *data)
 int	main(int ac, char const *av[])
 {
 	t_data	data;
-	size_t	win_width;
-	size_t	win_height;
 
 	validate_and_set_params(&data, av[1], ac);
 	set_width_height(&data, av[1]);
@@ -100,11 +98,10 @@ int	main(int ac, char const *av[])
 		ft_free_main(&data, "Error\nInvalid map\n");
 	ft_set_map(&data, data.height, av[1]);
 	data.mlx_ptr = mlx_init();
+	if (!data.mlx_ptr)
+		ft_free_main(&data, "Error\nmlx_init failed\n");
 	initialize_data(&data, data.w, data.h);
-	win_width = data.width * 50;
-	win_height = data.height * 50;
-	data.win_ptr = mlx_new_window(data.mlx_ptr,
-			win_width, win_height, "so_long");
+	initialize_window(&data);
 	hooks(&data);
 	render_map(&data);
 	mlx_string_put(data.mlx_ptr,

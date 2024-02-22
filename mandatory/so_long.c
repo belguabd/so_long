@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 14:33:30 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:45:29 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,6 @@ void	locate_player_in_map(t_data *data)
 int	main(int ac, char const *av[])
 {
 	t_data	data;
-	size_t	win_width;
-	size_t	win_height;
 
 	validate_and_set_params(&data, av[1], ac);
 	set_width_height(&data, av[1]);
@@ -117,14 +115,13 @@ int	main(int ac, char const *av[])
 	if (has_elements(data))
 		ft_free_main(&data, "Error\nInvalid map\n");
 	data.mlx_ptr = mlx_init();
+	if (!data.mlx_ptr)
+		ft_free_main(&data, "Error\nmlx_init failed\n");
 	initialize_data(&data);
-	win_width = data.width * 50;
-	win_height = data.height * 50;
-	data.win_ptr = mlx_new_window(data.mlx_ptr, win_width,
-			win_height, "so_long");
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_b, 50, 50);
+	initialize_window(&data);
+	render_map(&data);
 	mlx_hook(data.win_ptr, 2, 0, key_handler, &data);
 	mlx_hook(data.win_ptr, 17, 0, close_window, &data);
-	render_map(&data);
 	mlx_loop(data.mlx_ptr);
+	return (0);
 }

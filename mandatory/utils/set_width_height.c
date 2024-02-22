@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:15:18 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/21 16:41:09 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/22 10:13:20 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_width_height(t_data *data, char const *av)
 
 	data->height = 0;
 	data->width = 0;
-	fd = open(av, O_RDWR);
+	fd = open(av, O_RDONLY);
 	if (fd < 0)
 		ft_putstr_fd("Error\n: The file does not exist\n", 2);
 	line = get_next_line(fd);
