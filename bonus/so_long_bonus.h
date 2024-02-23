@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:21:51 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/22 12:12:01 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:28:59 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ typedef struct data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	size_t	nbr_move;
-	void	*img_p;
+	void	*img_rt;
+	void	*img_dwn;
+	void	*img_lft;
+	void	*img_up;
 	void	*img_b;
 	void	*img_c;
 	void	*img_w;
@@ -59,6 +62,7 @@ typedef struct data
 	int		nbr_enemy;
 	int		w;
 	int		h;
+	int		keycode;
 }	t_data;
 
 /*struct enemy*/
@@ -112,12 +116,14 @@ typedef struct list_imgs
 	char	*img_b;
 	char	*img_c;
 	char	*img_w;
-	char	*img_p;
+	char	*img_rt;
+	char	*img_dwn;
+	char	*img_lft;
+	char	*img_up;
 	char	*img_e;
 	char	*img_eo;
 	char	*img_l;
 	char	*img_d;
-
 }	t_imge;
 /*find location player*/
 void	locate_player_in_map(t_data *data);
