@@ -6,13 +6,12 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:39:11 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/22 11:41:53 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/24 14:59:54 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-
 # include <unistd.h>
 # include <fcntl.h>
 # include <limits.h>

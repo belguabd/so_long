@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:45:09 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/23 21:41:07 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/24 14:58:34 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ void	init_imgs(t_imge *img)
 	img->img_c = "./bonus/textures/coll.xpm";
 	img->img_w = "./bonus/textures/wall.xpm";
 	img->img_lft = "./bonus/textures/left.xpm";
-	img->img_rt ="./bonus/textures/right.xpm";
-	img->img_up ="./bonus/textures/up.xpm";
-	img->img_dwn ="./bonus/textures/down.xpm";
-	// img->img_p = "./bonus/textures/player1.xpm";
-	// img->img_p_r = "./bonus/textures/player2.xpm";
+	img->img_rt = "./bonus/textures/right.xpm";
+	img->img_up = "./bonus/textures/up.xpm";
+	img->img_dwn = "./bonus/textures/down.xpm";
 	img->img_e = "./bonus/textures/the_door_v1.xpm";
 	img->img_eo = "./bonus/textures/open_door_v1.xpm";
 	img->img_d = "./bonus/textures/dragon.xpm";
@@ -36,21 +34,8 @@ void	init_data(t_data *data)
 	data->d_y = 0;
 }
 
-void	initialize_data(t_data *data, int w, int h)
+void	init_img_player(t_data *data, t_imge img, int w, int h)
 {
-	t_imge	img;
-
-	init_imgs(&img);
-	init_data(data);
-	data->img_l = mlx_xpm_file_to_image(data->mlx_ptr, img.img_l, &w, &h);
-	if (!data->img_l)
-		ft_free_main(data, "Error\nThe background image is not found\n");
-	data->img_c = mlx_xpm_file_to_image(data->mlx_ptr, img.img_c, &w, &h);
-	if (!data->img_c)
-		ft_free_main(data, "Error\nThe collectible image is not found\n");
-	data->img_w = mlx_xpm_file_to_image(data->mlx_ptr, img.img_w, &w, &h);
-	if (!data->img_w)
-		ft_free_main(data, "Error\nThe wall image is not found\n");
 	data->img_rt = mlx_xpm_file_to_image(data->mlx_ptr, img.img_rt, &w, &h);
 	if (!data->img_rt)
 		ft_free_main(data, "Error\nThe player image is not found\n");
@@ -63,6 +48,24 @@ void	initialize_data(t_data *data, int w, int h)
 	data->img_up = mlx_xpm_file_to_image(data->mlx_ptr, img.img_up, &w, &h);
 	if (!data->img_up)
 		ft_free_main(data, "Error\nThe player image is not found\n");
+}
+
+void	initialize_data(t_data *data, int w, int h)
+{
+	t_imge	img;
+
+	init_imgs(&img);
+	init_data(data);
+	init_img_player(data, img, w, h);
+	data->img_l = mlx_xpm_file_to_image(data->mlx_ptr, img.img_l, &w, &h);
+	if (!data->img_l)
+		ft_free_main(data, "Error\nThe background image is not found\n");
+	data->img_c = mlx_xpm_file_to_image(data->mlx_ptr, img.img_c, &w, &h);
+	if (!data->img_c)
+		ft_free_main(data, "Error\nThe collectible image is not found\n");
+	data->img_w = mlx_xpm_file_to_image(data->mlx_ptr, img.img_w, &w, &h);
+	if (!data->img_w)
+		ft_free_main(data, "Error\nThe wall image is not found\n");
 	data->img_e = mlx_xpm_file_to_image(data->mlx_ptr, img.img_e, &w, &h);
 	if (!data->img_e)
 		ft_free_main(data, "Error\nThe door image is not found\n");

@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:38:46 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/23 21:53:37 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/24 14:56:47 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,11 @@ void	hooks(t_data *data)
 	mlx_hook(data->win_ptr, 17, 0, close_window, data);
 	mlx_loop_hook(data->mlx_ptr, animation, data);
 }
-void f()
-{
-	system("leaks so_long_bonus");
-}
+
 int	main(int ac, char const *av[])
 {
 	t_data	data;
-	atexit(f);
+
 	validate_and_set_params(&data, av[1], ac);
 	set_width_height(&data, av[1]);
 	ft_set_map(&data, data.height, av[1]);

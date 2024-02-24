@@ -6,12 +6,12 @@
 #    By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 16:26:12 by belguabd          #+#    #+#              #
-#    Updated: 2024/02/22 12:16:13 by belguabd         ###   ########.fr        #
+#    Updated: 2024/02/24 05:26:30 by belguabd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 
 #------Folder------#
 GET_NEXT_LINE = get_next_line
@@ -44,22 +44,24 @@ RED = \033[31m
 
 
 all : $(NAME)
+
 #------Rules------#
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 	@echo "$(GREEN)Run './$(NAME)' to execute"
 
 #------Bonus------#
-bonus:$(OBJB)
+
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS) : $(OBJB)
 	@$(CC) $(CFLAGS) $(OBJB) -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS)
 	@echo "$(GREEN)Run './$(NAME_BONUS)' to execute"
 	
-	
 #------Compilation------#
-./mandatory/%.o: ./mandatory/%.c ./mandatory/so_long.h
+$(BONUS)/%.o: $(BONUS)/%.c $(BONUS)/so_long_bonus.h
 	@$(CC) $(CFLAGS) -c $< -o $@
-
-./bonus/%.o: ./bonus/%.c ./bonus/so_long_bonus.h
+mandatory/%.o: mandatory/%.c mandatory/so_long.h
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 #------Clean------#
@@ -77,6 +79,5 @@ fclean: clean
 #------re------#
 re: fclean all bonus
 	@echo "$(GREEN)Program recompiled : \033[1;34mOK\033[m"
-
 #------.PHONY------#
 .PHONY:clean

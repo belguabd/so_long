@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 14:42:50 by belguabd          #+#    #+#             */
-/*   Updated: 2024/02/23 21:45:37 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/02/24 14:59:42 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ void	render_map(t_data *data)
 		render_helper(data, y);
 		y++;
 	}
-	if(data->keycode == KEY_RIGHT)
+	if (data->keycode == KEY_RIGHT)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->img_lft, data->p_x * 50, data->p_y * 50);
-	else if(data->keycode == KEY_LEFT)
+	else if (data->keycode == KEY_LEFT)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->img_rt, data->p_x * 50, data->p_y * 50);
-	else if(data->keycode==KEY_UP)
+	else if (data->keycode == KEY_UP)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->img_up, data->p_x * 50, data->p_y * 50);
-	else	
+	else
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->img_dwn, data->p_x * 50, data->p_y * 50);
 }
